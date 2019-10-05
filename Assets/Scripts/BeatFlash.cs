@@ -9,29 +9,21 @@ public class BeatFlash : MonoBehaviour
 
     public Color color1;
     public Color color2;
-
-    private float lastPercentage = 0;
-
+    
     // Start is called before the first frame update
     void Start()
     {
         image = GetComponent<Image>();
     }
 
-    void BeatUpdate(float percentage) {
-        bool isNewBeat = percentage < lastPercentage;
-        lastPercentage = percentage;
-
-        if (isNewBeat)
+    void OnNewBeat() {
+        if (image.color == color1)
         {
-            if (image.color == color1)
-            {
-                image.color = color2;
-            }
-            else
-            {
-                image.color = color1;
-            }
+            image.color = color2;
+        }
+        else
+        {
+            image.color = color1;
         }
     }
 }

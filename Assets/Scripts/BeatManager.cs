@@ -21,6 +21,7 @@ public class BeatManager : MonoBehaviour
         if (counter > timePerAction)
         {
             counter -= timePerAction;
+            gameObject.BroadcastMessage("OnNewBeat");
         }
         gameObject.BroadcastMessage("BeatUpdate", counter / timePerAction);
     }
