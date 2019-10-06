@@ -39,7 +39,7 @@ public class CameraMove : MonoBehaviour
 
         if (counter == time) {
             screenOff.GetComponent<Image>().enabled = false;
-            emailUI.GetComponent<Canvas>().enabled = true;
+            emailUI.SetActive(true);
             Destroy(this);
         }
     }

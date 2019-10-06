@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PointsManager : MonoBehaviour
 {
@@ -9,11 +10,22 @@ public class PointsManager : MonoBehaviour
 
     private int points = 0;
 
+    private ProgressScript progress;
+
+    void Start()
+    {
+        progress = GameObject.Find("Progress").GetComponent<ProgressScript>();
+    }
+
     void OnPointGet() {
         points++;
         slider.value = points;
-        if (slider.maxValue == points) {
-            Debug.Log("Win!");
+        if (slider.maxValue == points) 
+        {
+            progress.FirstLoad = false;
+            progress.WonLastGame = true;
+            progress.BeatLevelOne = true;
+            SceneManager.LoadScene("Bedroom");
         }
     }
 }

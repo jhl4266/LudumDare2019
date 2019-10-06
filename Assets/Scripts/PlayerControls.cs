@@ -29,8 +29,8 @@ public class PlayerControls : MonoBehaviour
     void Start()
     {
         playerMesh = gameObject.GetComponentsInChildren<MeshFilter>()[0].sharedMesh;
-        horizontalMovement = new Vector3(playerMesh.bounds.size.x * tilesPerMove, 0, 0);
-        verticalMovement = new Vector3(0, 0, playerMesh.bounds.size.z * tilesPerMove);
+        horizontalMovement = new Vector3(playerMesh.bounds.size.x * tilesPerMove, 0, 0) * transform.localScale.x;
+        verticalMovement = new Vector3(0, 0, playerMesh.bounds.size.z * tilesPerMove) * transform.localScale.z * 1.26f;
 
         bpm = GameObject.Find("LevelManager").GetComponent<BeatManager>().bpm;
         movementSpeed = 60.0f / bpm;
@@ -95,7 +95,7 @@ public class PlayerControls : MonoBehaviour
         {
             movementVector = verticalMovement;
             nextGridLocation = gridLocation + new Vector2(0, tilesPerMove);
-            gameObject.transform.eulerAngles = new Vector3(180, 0, 0);
+            gameObject.transform.eulerAngles = new Vector3(180, 0, 180);
             SetIsMoving(true);
         }
         else if (Input.GetKey(KeyCode.DownArrow))

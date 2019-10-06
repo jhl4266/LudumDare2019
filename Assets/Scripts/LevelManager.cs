@@ -42,8 +42,8 @@ public class LevelManager : MonoBehaviour
         // Generate vertical enemies
         for (int x = -halfGridSize; x <= halfGridSize; x++)
         {
-            GameObject topEnemy = Instantiate(enemy, new Vector3(x * mesh.bounds.size.x, 0, (halfGridSize + enemyDistance) * mesh.bounds.size.z), Quaternion.identity);
-            GameObject bottomEnemy = Instantiate(enemy, new Vector3(x * mesh.bounds.size.x, 0, (-halfGridSize - enemyDistance) * mesh.bounds.size.z), Quaternion.identity);
+            GameObject topEnemy = Instantiate(enemy, new Vector3(x * mesh.bounds.size.x, 0, (halfGridSize + enemyDistance) * mesh.bounds.size.z * 1.26f), Quaternion.identity);
+            GameObject bottomEnemy = Instantiate(enemy, new Vector3(x * mesh.bounds.size.x, 0, (-halfGridSize - enemyDistance) * mesh.bounds.size.z * 1.26f), Quaternion.identity);
             bottomEnemy.transform.eulerAngles = new Vector3(180, 0, 0);
         }
 
@@ -65,8 +65,8 @@ public class LevelManager : MonoBehaviour
         // If there was an active tile, this means we got a point
         if (activeTile)
         {
-            Renderer rOldActive = activeTile.GetComponent<Renderer>();
-            rOldActive.material = mBasicTile;
+            Vector3 oldActivePosition = activeTile.transform.position;
+            activeTile.transform.position = new Vector3(oldActivePosition.x, -1, oldActivePosition.z);
             gameObject.SendMessage("OnPointGet");
         }
 
@@ -85,9 +85,8 @@ public class LevelManager : MonoBehaviour
         previousZ = z;
 
         activeTile = grid[x, z];
-
-        Renderer rNewActive = activeTile.GetComponent<Renderer>();
-        rNewActive.material = mActiveTile;
+        Vector3 activePosition = activeTile.transform.position;
+        activeTile.transform.position = new Vector3(activePosition.x, -0.4f, activePosition.z);
 
         // Send data
         gameObject.BroadcastMessage("SendActiveTile", new Vector2(x, z));
