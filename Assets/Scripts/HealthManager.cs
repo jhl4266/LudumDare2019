@@ -14,6 +14,7 @@ public class HealthManager : MonoBehaviour
     void Start()
     {
         health = maxHealth;
+        slider.maxValue = maxHealth;
         slider.value = health;
         damageScript = slider.GetComponentInChildren<DamageEffect>();
     }

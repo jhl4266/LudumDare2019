@@ -1498,7 +1498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1771052040}
-  maxHealth: 3
+  maxHealth: 5
 --- !u!1 &2058682970
 GameObject:
   m_ObjectHideFlags: 0
