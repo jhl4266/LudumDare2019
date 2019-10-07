@@ -9,11 +9,18 @@ public class BeatManager : MonoBehaviour
     private float counter = 0;
 
     public AudioSource audio;
+    public AudioClip levelTwoSong;
 
     // Start is called before the first frame update
     void Start()
     {
         timePerAction = 60.0f / bpm;
+        ProgressScript progress = GameObject.Find("Progress").GetComponent<ProgressScript>();
+        if (progress.CurrentLevel == "Level 2") 
+        {
+            bpm = 120;
+            audio.clip = levelTwoSong;
+        }
         audio.Play();
     }
 

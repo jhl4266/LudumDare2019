@@ -30,6 +30,8 @@ public class EmailScript : MonoBehaviour, IPointerDownHandler
         ui.transform.Find("Content").GetComponent<Text>().text = Content;
         ui.transform.Find("FromLine").gameObject.SetActive(true);
 
+        PlayClickNoise();
+
         if (Level == "")
         {
             playButton.SetActive(false);
@@ -40,5 +42,13 @@ public class EmailScript : MonoBehaviour, IPointerDownHandler
             playButton.GetComponent<PlayButtonScript>().Level = Level;
             playButton.GetComponentInChildren<Text>().text = "Play " + Level;
         }
+    }
+
+    void PlayClickNoise() 
+    {
+        GameObject clickContainer = GameObject.Find("ClickContainer");
+        int count = clickContainer.transform.childCount;
+        int index = Random.Range(0, count);
+        clickContainer.transform.GetChild(index).GetComponent<AudioSource>().Play();
     }
 }

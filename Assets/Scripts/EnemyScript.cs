@@ -13,7 +13,7 @@ public class EnemyScript : MonoBehaviour
 
     void OnNewBeat()
     {
-        if (Random.Range(0, 100.0f) < 3.0f)
+        if (Random.Range(0, 100.0f) < 4.0f)
         {
             FireProjectile();
         }

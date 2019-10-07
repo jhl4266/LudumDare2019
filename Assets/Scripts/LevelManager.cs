@@ -14,9 +14,6 @@ public class LevelManager : MonoBehaviour
 
     private GameObject activeTile = null;
 
-    public Material mBasicTile;
-    public Material mActiveTile;
-
     private int previousX;
     private int previousZ;
 
@@ -25,6 +22,8 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ProgressScript progress = GameObject.Find("Progress").GetComponent<ProgressScript>();
+
         // Generate tile array
         Mesh mesh = tile.GetComponentsInChildren<MeshFilter>()[0].sharedMesh;
         grid = new GameObject[gridSize, gridSize];
@@ -48,13 +47,18 @@ public class LevelManager : MonoBehaviour
         }
 
         // Generate horizontal enemies
-        for (int z = -halfGridSize; z <= halfGridSize; z++)
+        if (progress.CurrentLevel == "Level 2")
         {
-            GameObject rightEnemy = Instantiate(enemy, new Vector3((halfGridSize + enemyDistance) * mesh.bounds.size.x, 0, z * mesh.bounds.size.z), Quaternion.identity);
-            rightEnemy.transform.eulerAngles = new Vector3(0, 90, 0);
-            GameObject leftEnemy = Instantiate(enemy, new Vector3((-halfGridSize - enemyDistance) * mesh.bounds.size.x, 0, z * mesh.bounds.size.z), Quaternion.identity);
-            leftEnemy.transform.eulerAngles = new Vector3(0, -90, 0);
+            for (int z = -halfGridSize; z <= halfGridSize; z++)
+            {
+                GameObject rightEnemy = Instantiate(enemy, new Vector3((halfGridSize + enemyDistance) * mesh.bounds.size.x, 0, z * mesh.bounds.size.z), Quaternion.identity);
+                rightEnemy.transform.eulerAngles = new Vector3(0, 90, 0);
+                GameObject leftEnemy = Instantiate(enemy, new Vector3((-halfGridSize - enemyDistance) * mesh.bounds.size.x, 0, z * mesh.bounds.size.z), Quaternion.identity);
+                leftEnemy.transform.eulerAngles = new Vector3(0, -90, 0);
+            }
         }
+
+        GenerateTarget();
 
         // Send data
         gameObject.BroadcastMessage("SendHalfGridSize", halfGridSize);

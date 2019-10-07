@@ -22,7 +22,6 @@ public class PlayerControls : MonoBehaviour
     private int halfGridSize;
     private Vector2 gridLocation;
     private Vector2 nextGridLocation;
-    private bool targetIsActive = false;
     Vector2 activeTileLocation;
 
     // Start is called before the first frame update
@@ -34,16 +33,6 @@ public class PlayerControls : MonoBehaviour
 
         bpm = GameObject.Find("LevelManager").GetComponent<BeatManager>().bpm;
         movementSpeed = 60.0f / bpm;
-    }
-
-    void Update()
-    {
-        //Test Button
-        if (!targetIsActive && Input.GetKey(KeyCode.Space))
-        {
-            targetIsActive = true;
-            gameObject.SendMessageUpwards("GenerateTarget");
-        }
     }
 
     void BeatUpdate(float percentage)

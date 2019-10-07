@@ -29,9 +29,18 @@ public class HealthManager : MonoBehaviour
         slider.value = health;
         if (slider.minValue == health)
         {
-            progress.FirstLoad = false;
-            progress.WonLastGame = false;
-            progress.LevelOneLosses++;
+            if (progress.CurrentLevel == "Level 2")
+            {
+                progress.FirstLoad = false;
+                progress.WonLastGame = false;
+                progress.LevelTwoLosses++;
+            }
+            else
+            {
+                progress.FirstLoad = false;
+                progress.WonLastGame = false;
+                progress.LevelOneLosses++;
+            }
             SceneManager.LoadScene("Bedroom");
         }
 

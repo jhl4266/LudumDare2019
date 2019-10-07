@@ -22,9 +22,18 @@ public class PointsManager : MonoBehaviour
         slider.value = points;
         if (slider.maxValue == points) 
         {
-            progress.FirstLoad = false;
-            progress.WonLastGame = true;
-            progress.BeatLevelOne = true;
+            if (progress.CurrentLevel == "Level 2") 
+            {
+                progress.FirstLoad = false;
+                progress.WonLastGame = true;
+                progress.BeatLevelTwo = true;
+            }
+            else 
+            {
+                progress.FirstLoad = false;
+                progress.WonLastGame = true;
+                progress.BeatLevelOne = true;
+            }
             SceneManager.LoadScene("Bedroom");
         }
     }

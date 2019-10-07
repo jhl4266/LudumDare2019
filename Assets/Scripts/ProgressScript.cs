@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ProgressScript : MonoBehaviour
 {
+    public string CurrentLevel { get; set; }
+
     public bool FirstLoad { get; set; }
     public bool WonLastGame { get; set; }
 

@@ -9,6 +9,10 @@ public class PlayButtonScript : MonoBehaviour
 
     public void LoadScene()
     {
-        SceneManager.LoadScene(Level);
+        ProgressScript progress = GameObject.Find("Progress").GetComponent<ProgressScript>();
+        progress.CurrentLevel = Level;
+
+        gameObject.GetComponent<AudioSource>().Play();
+        SceneManager.LoadScene("Level 1");
     }
 }

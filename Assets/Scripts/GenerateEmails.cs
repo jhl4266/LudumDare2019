@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GenerateEmails : MonoBehaviour
 {
     public GameObject email;
-    private Vector3 emailPosition = new Vector3(-50, -50, 0);
+    private Vector3 emailPosition = new Vector3(-50, 50, 0);
     private ProgressScript progress;
 
     // Start is called before the first frame update
@@ -18,19 +18,18 @@ public class GenerateEmails : MonoBehaviour
         {
             if (progress.LevelTwoLosses > 0)
             {
-                MakeEmail("Mrs. Important", "That show was terrible!");
+                MakeEmail("Mr. Agent", "You must have lost the few fans you got already!");
             }
-            MakeEmail("Mrs. Important", "How about a second gig?", "Level 2");
-            MakeEmail("Mrs. Bags", "You're bad at DJing don't ask again...");
+            MakeEmail("Mr. Agent", "Looks like you're starting to get a following! I've got another show for you...", "Level 2");
+            MakeEmail("Mr. Bags", "The show was better than last time, but not by much. It looks like one or two people may have actually liked it this time.");
         }
-
+        
         if (progress.LevelOneLosses > 0)
         {
-            MakeEmail("Mr. Important", "That show was terrible!");
+            MakeEmail("Mr. Agent", "That's no way to start a career! I knew this would happen...");
         }
-        MakeEmail("Mr. Important", "How about a first gig?", "Level 1");
-        MakeEmail("Mr. Bags", "You're bad at DJing don't ask again...");
-
+        MakeEmail("Mr. Agent", "Hey Juke, I know you've had no luck making any fans, but how about a gig?", "Level 1");
+        MakeEmail("Mr. Bags", "You're really bad at DJing! Please don't ask again...");
 
         GameObject.Find("PlayButton").SetActive(false);
         GameObject.Find("Scrollbar Vertical").GetComponent<Scrollbar>().value = 1.0f;
