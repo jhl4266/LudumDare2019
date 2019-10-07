@@ -24,6 +24,8 @@ public class PlayerControls : MonoBehaviour
     private Vector2 nextGridLocation;
     Vector2 activeTileLocation;
 
+    private AudioSource playerAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,8 @@ public class PlayerControls : MonoBehaviour
 
         bpm = GameObject.Find("LevelManager").GetComponent<BeatManager>().bpm;
         movementSpeed = 60.0f / bpm;
+
+        playerAudio = GetComponent<AudioSource>();
     }
 
     void BeatUpdate(float percentage)
@@ -111,6 +115,7 @@ public class PlayerControls : MonoBehaviour
             }
             else
             {
+                playerAudio.Play();
                 lastPosition = transform.position;
             }
         }
