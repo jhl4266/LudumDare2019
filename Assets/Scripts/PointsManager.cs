@@ -12,16 +12,28 @@ public class PointsManager : MonoBehaviour
 
     private ProgressScript progress;
 
+    private AudioSource audio;
+    public AudioClip pointAudio;
+    public AudioClip winAudio;
+
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         progress = GameObject.Find("Progress").GetComponent<ProgressScript>();
     }
 
     void OnPointGet() {
+        audio.clip = pointAudio;
+        audio.Play();
+
         points++;
         slider.value = points;
         if (slider.maxValue == points) 
         {
+            AudioSource progressAudio = progress.GetComponent<AudioSource>();
+            progressAudio.clip = winAudio;
+            progressAudio.Play();
+
             if (progress.CurrentLevel == "Level 2") 
             {
                 progress.FirstLoad = false;

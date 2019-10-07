@@ -14,8 +14,14 @@ public class HealthManager : MonoBehaviour
 
     private ProgressScript progress;
 
+    private AudioSource audio;
+    public AudioClip damageAudio;
+    public AudioClip loseAudio;
+
     void Start()
     {
+        audio = GetComponent<AudioSource>();
+
         health = maxHealth;
         slider.maxValue = maxHealth;
         slider.value = health;
@@ -25,10 +31,17 @@ public class HealthManager : MonoBehaviour
 
     void OnDamageTaken()
     {
+        audio.clip = damageAudio;
+        audio.Play();
+
         health--;
         slider.value = health;
         if (slider.minValue == health)
         {
+            AudioSource progressAudio = progress.GetComponent<AudioSource>();
+            progressAudio.clip = loseAudio;
+            progressAudio.Play();
+
             if (progress.CurrentLevel == "Level 2")
             {
                 progress.FirstLoad = false;
