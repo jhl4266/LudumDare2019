@@ -68,33 +68,33 @@ public class PlayerControls : MonoBehaviour
     void CheckInputs()
     {
         //Horizontal Movement
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            movementVector = horizontalMovement;
-            nextGridLocation = gridLocation + new Vector2(tilesPerMove, 0);
-            gameObject.transform.eulerAngles = new Vector3(0, -90, 0);
-            SetIsMoving(true);
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             movementVector = -horizontalMovement;
             nextGridLocation = gridLocation - new Vector2(tilesPerMove, 0);
+            gameObject.transform.eulerAngles = new Vector3(0, -90, 0);
+            SetIsMoving(true);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            movementVector = horizontalMovement;
+            nextGridLocation = gridLocation + new Vector2(tilesPerMove, 0);
             gameObject.transform.eulerAngles = new Vector3(0, 90, 0);
             SetIsMoving(true);
         }
 
         //Vertical Movement
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            movementVector = verticalMovement;
-            nextGridLocation = gridLocation + new Vector2(0, tilesPerMove);
-            gameObject.transform.eulerAngles = new Vector3(180, 0, 180);
-            SetIsMoving(true);
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             movementVector = -verticalMovement;
             nextGridLocation = gridLocation - new Vector2(0, tilesPerMove);
+            gameObject.transform.eulerAngles = new Vector3(180, 0, 180);
+            SetIsMoving(true);
+        }
+        else if (Input.GetKey(KeyCode.UpArrow))
+        {
+            movementVector = verticalMovement;
+            nextGridLocation = gridLocation + new Vector2(0, tilesPerMove);
             gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
             SetIsMoving(true);
         }

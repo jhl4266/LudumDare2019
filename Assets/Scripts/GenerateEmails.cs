@@ -14,6 +14,11 @@ public class GenerateEmails : MonoBehaviour
     {
         progress = GameObject.Find("Progress").GetComponent<ProgressScript>();
 
+        if (progress.BeatLevelTwo)
+        {
+            MakeEmail("Mr. Bags", "Nice show last night! I think you have a few fans here now.");
+        }
+
         if (progress.BeatLevelOne)
         {
             if (progress.LevelTwoLosses > 0)
